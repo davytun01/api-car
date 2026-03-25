@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\SaleController;
@@ -12,9 +13,10 @@ use App\Http\Controllers\SaleController;
 Route::get('/cars', [CarController::class, 'index']);
 Route::get('/cars/{car}', [CarController::class, 'show']);
 
+Route::post('/appointments', [AppointmentController::class, 'store']); // Public appointment booking
+
 // Auth
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
 
 // Protected
 Route::middleware('auth:sanctum')->group(function () {

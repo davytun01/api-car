@@ -7,48 +7,6 @@ use OpenApi\Attributes as OA;
 class AuthDocs
 {
     #[OA\Post(
-        path: "/api/register",
-        summary: "Register a new user",
-        tags: ["Auth"],
-        requestBody: new OA\RequestBody(
-            required: true,
-            content: new OA\JsonContent(
-                required: ["name", "email", "password", "password_confirmation"],
-                properties: [
-                    new OA\Property(property: "name", type: "string", example: "John Doe"),
-                    new OA\Property(property: "email", type: "string", format: "email", example: "john@example.com"),
-                    new OA\Property(property: "password", type: "string", format: "password", example: "secret123"),
-                    new OA\Property(property: "password_confirmation", type: "string", format: "password", example: "secret123")
-                ]
-            )
-        ),
-        responses: [
-            new OA\Response(
-                response: 201,
-                description: "User registered successfully",
-                content: new OA\JsonContent(
-                    properties: [
-                        new OA\Property(property: "success", type: "boolean", example: true),
-                        new OA\Property(property: "message", type: "string", example: "User registered successfully"),
-                        new OA\Property(property: "data", properties: [
-                            new OA\Property(property: "user", properties: [
-                                new OA\Property(property: "id", type: "integer", example: 1),
-                                new OA\Property(property: "name", type: "string", example: "John Doe"),
-                                new OA\Property(property: "email", type: "string", example: "john@example.com"),
-                                new OA\Property(property: "role", type: "string", example: "sales")
-                            ], type: "object"),
-                            new OA\Property(property: "access_token", type: "string", example: "1|1234567890abcdef"),
-                            new OA\Property(property: "token_type", type: "string", example: "Bearer")
-                        ], type: "object")
-                    ]
-                )
-            ),
-            new OA\Response(response: 422, description: "Validation Error")
-        ]
-    )]
-    public function register() {}
-
-    #[OA\Post(
         path: "/api/login",
         summary: "Login user and create token",
         tags: ["Auth"],
