@@ -15,13 +15,13 @@
         }
     ],
     "paths": {
-        "/api/register": {
+        "/api/appointments": {
             "post": {
                 "tags": [
-                    "Auth"
+                    "Appointments"
                 ],
-                "summary": "Register a new user",
-                "operationId": "c20f36357d5e8f6bec68110628f6db6d",
+                "summary": "Store a newly created appointment (Public for guests)",
+                "operationId": "f5e144ec941fab4d4bcfe61dde56970d",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -30,28 +30,34 @@
                                 "required": [
                                     "name",
                                     "email",
-                                    "password",
-                                    "password_confirmation"
+                                    "requested_date"
                                 ],
                                 "properties": {
                                     "name": {
                                         "type": "string",
-                                        "example": "John Doe"
+                                        "example": "Jane Doe"
                                     },
                                     "email": {
                                         "type": "string",
                                         "format": "email",
-                                        "example": "john@example.com"
+                                        "example": "jane@example.com"
                                     },
-                                    "password": {
+                                    "phone": {
                                         "type": "string",
-                                        "format": "password",
-                                        "example": "secret123"
+                                        "example": "987654321"
                                     },
-                                    "password_confirmation": {
+                                    "requested_date": {
                                         "type": "string",
-                                        "format": "password",
-                                        "example": "secret123"
+                                        "format": "date-time",
+                                        "example": "2023-11-25T14:30:00Z"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "example": "I am interested in test driving the Camry."
+                                    },
+                                    "car_id": {
+                                        "type": "integer",
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -61,7 +67,7 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "User registered successfully",
+                        "description": "Appointment requested successfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -72,38 +78,42 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "User registered successfully"
+                                            "example": "Appointment requested successfully"
                                         },
                                         "data": {
                                             "properties": {
-                                                "user": {
-                                                    "properties": {
-                                                        "id": {
-                                                            "type": "integer",
-                                                            "example": 1
-                                                        },
-                                                        "name": {
-                                                            "type": "string",
-                                                            "example": "John Doe"
-                                                        },
-                                                        "email": {
-                                                            "type": "string",
-                                                            "example": "john@example.com"
-                                                        },
-                                                        "role": {
-                                                            "type": "string",
-                                                            "example": "sales"
-                                                        }
-                                                    },
-                                                    "type": "object"
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
                                                 },
-                                                "access_token": {
+                                                "name": {
                                                     "type": "string",
-                                                    "example": "1|1234567890abcdef"
+                                                    "example": "Jane Doe"
                                                 },
-                                                "token_type": {
+                                                "email": {
                                                     "type": "string",
-                                                    "example": "Bearer"
+                                                    "example": "jane@example.com"
+                                                },
+                                                "phone": {
+                                                    "type": "string",
+                                                    "example": "987654321"
+                                                },
+                                                "requested_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-11-25T14:30:00.000000Z"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "I am interested in test driving the Camry."
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "pending"
+                                                },
+                                                "car_id": {
+                                                    "type": "integer",
+                                                    "example": 1
                                                 }
                                             },
                                             "type": "object"
@@ -115,7 +125,7 @@
                         }
                     },
                     "422": {
-                        "description": "Validation Error"
+                        "description": "Validation error"
                     }
                 }
             }
@@ -1610,6 +1620,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Appointments",
+            "description": "Appointments"
+        },
         {
             "name": "Auth",
             "description": "Auth"
