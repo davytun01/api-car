@@ -1,6 +1,6 @@
-# AutoMart Nigeria API
+# Ignite Luxury API
 
-A complete, RESTful JSON API for a small-to-medium car dealership company called "AutoMart Nigeria". Built with Laravel 12.
+A complete, RESTful JSON API for a premium automotive dealership called "Ignite Luxury". Built with Laravel 12.
 
 ## Features
 - **Strict JSON Standardized Responses**: Wrapper for data using `{success, message, data, meta}`.
@@ -42,7 +42,7 @@ A complete, RESTful JSON API for a small-to-medium car dealership company called
    ```bash
    php artisan migrate --seed
    ```
-   *(This creates the admin user `admin@automart.com` / `password` and seeds 20 realistic cars).*
+   *(This creates the admin user `admin@igniteluxury.com` / `password` and seeds 20 realistic cars).*
 
 6. **Start the Development Server:**
    ```bash
@@ -89,7 +89,7 @@ You can import the following JSON directly into Postman:
 ```json
 {
 	"info": {
-		"name": "AutoMart Nigeria API",
+		"name": "Ignite Luxury API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -104,7 +104,7 @@ You can import the following JSON directly into Postman:
 						"body": {
 							"mode": "formdata",
 							"formdata": [
-								{ "key": "email", "value": "admin@automart.com", "type": "text" },
+								{ "key": "email", "value": "admin@igniteluxury.com", "type": "text" },
 								{ "key": "password", "value": "password", "type": "text" }
 							]
 						},
